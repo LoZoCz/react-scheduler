@@ -1,10 +1,8 @@
 # Scheduler - React + TS + React Scheduler + Material UI
 
 [ ] Widok kalendarza z wydarzeniami w języku polskim
----[ ] Opcje do zmiany godziny (start i koniec)
 ---[ ] Zmien format daty i godziny (pakiet moment)
----[ ] Moze troche zmien motyw calego klendarza
-[ ] Dodawanie, edytowanie i usuwanie wydarzen z kalendarza
+[x] Dodawanie, edytowanie i usuwanie wydarzen z kalendarza
 ---[x] Dodawanie
 ---[x] Edytowanie
 ---[x] Usuwanie

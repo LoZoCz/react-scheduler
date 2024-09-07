@@ -21,25 +21,39 @@ import {
     EditingState,
 } from '@devexpress/dx-react-scheduler'
 import { useState } from 'react'
-import { initialAppointments, resources } from '../utils/initialValues'
-import { useAppointments } from '../utils/useAppointments'
+import {
+    INITIAL_END_VALUE,
+    INITIAL_START_VALUE,
+    RESOURCES,
+    SCHEDULER_MESSAGES,
+} from '../utils/initialValues'
+import { useAppointments } from '../hooks/useAppointments'
+import { DayTimeLabel, WeekTimeLabel } from './TimeLabel'
 
 const Calender = () => {
     const [currentDate, setCurrentDate] = useState<SchedulerDateTime>(
         new Date()
     )
-    const { appointments, commitChanges } = useAppointments(initialAppointments)
+    const { appointments, commitChanges } = useAppointments()
 
     return (
         <>
-            <Scheduler data={appointments}>
+            <Scheduler data={appointments || []} locale="pl-PL">
                 <ViewState
                     currentDate={currentDate}
                     onCurrentDateChange={setCurrentDate}
                 />
 
-                <DayView startDayHour={1} endDayHour={24} />
-                <WeekView startDayHour={1} endDayHour={24} />
+                <DayView
+                    startDayHour={INITIAL_START_VALUE}
+                    endDayHour={INITIAL_END_VALUE}
+                    timeScaleLabelComponent={DayTimeLabel}
+                />
+                <WeekView
+                    startDayHour={INITIAL_START_VALUE}
+                    endDayHour={INITIAL_END_VALUE}
+                    timeScaleLabelComponent={WeekTimeLabel}
+                />
                 <MonthView />
 
                 <EditingState onCommitChanges={commitChanges} />
@@ -48,15 +62,15 @@ const Calender = () => {
                 <Appointments />
                 <ConfirmationDialog />
                 <AppointmentTooltip showOpenButton showDeleteButton />
-                <AppointmentForm />
+                <AppointmentForm messages={SCHEDULER_MESSAGES['pl-PL']} />
 
                 <Toolbar />
                 <ViewSwitcher />
 
-                <AllDayPanel />
+                <AllDayPanel messages={SCHEDULER_MESSAGES['pl-PL']} />
                 <DateNavigator />
-                <TodayButton />
-                <Resources data={resources} />
+                <TodayButton messages={SCHEDULER_MESSAGES['pl-PL']} />
+                <Resources data={RESOURCES} />
             </Scheduler>
         </>
     )

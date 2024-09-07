@@ -2,7 +2,7 @@ import Calender from './components/Calender'
 
 function App() {
     return (
-        <main className="h-screen p-4 text-red-600">
+        <main className="h-screen">
             <Calender />
         </main>
     )
