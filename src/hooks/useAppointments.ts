@@ -60,7 +60,7 @@ export const useAppointments = () => {
         }
 
         if (deleted !== undefined) {
-            deleteAppointment(deleted)
+            deleteAppointment(deleted.toString())
         }
     }
 
